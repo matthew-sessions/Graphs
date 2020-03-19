@@ -153,7 +153,7 @@ class Graph:
         s = Stack()
         # Push the starting vertex
         s.push([starting_vertex])
-        # Create a set to store visited vertices
+        # Create a set()set to store visited vertices
         visited = set()
         # While the stack is not empty...
         while s.size() > 0:
@@ -174,6 +174,23 @@ class Graph:
                         temp = lastst.copy()
                         temp.append(neighbor)
                         s.push(temp)
+
+
+    # def dfs_recursive(self, starting_vertex, destination_vertex, vistied=None, path=None):
+    #     if vistied is None:
+    #         visted = set()
+    #     if path is None:
+    #         path = []
+    #     vistied.add(starting_vertex)
+    #     path_copy = path.copy()
+    #     path_copy.append(starting_vertex)
+    #     if starting_vertex == destination_vertex:
+    #         return path_copy
+    #     for neighbor in self.get_neighbors(starting_vertex):
+    #         new_path = self.dfs.dfs_recursive(neighbor, destination_vertex, vistied, path)
+    #         if new_path is not None:
+    #             return new_path
+    #     return None
 
     def dfs_recursive(self, starting_vertex, destination_vertex):
         """
