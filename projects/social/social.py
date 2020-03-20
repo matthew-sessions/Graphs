@@ -89,7 +89,7 @@ lenth += 1
             else:
                 colis += 1
 
-    def get_all_social_paths(self, user_id):
+    def get_all_social_paths2(self, user_id):
         """
         Takes a user's user_id as an argument
 
@@ -116,45 +116,46 @@ lenth += 1
         
         return visited
 
-    # def get_all_social_paths(self, user_id):
-    #     """
-    #     Takes a user's user_id as an argument
+    def get_all_social_paths(self, user_id):
+        """
+        Takes a user's user_id as an argument
 
-    #     Returns a dictionary containing every user in that user's
-    #     extended network with the shortest friendship path between them.
+        Returns a dictionary containing every user in that user's
+        extended network with the shortest friendship path between them.
 
-    #     The key is the friend's ID and the value is the path.
-    #     """
-    #     visited = {}  # Note that this is a dictionary, not a set
-    #     # !!!! IMPLEMENT ME
-    #     changin_arr = [user_id]
-    #     depth = 0
-    #     while changin_arr != []:
-    #         new_arr = []
-    #         for i in changin_arr:
-    #             if i not in visited:
-    #                 visited[i] = depth
-    #                 next_friends = self.friendships[i]
-    #                 for a in next_friends:
-    #                     new_arr.append(a)
-    #         depth += 1
-    #         changin_arr = new_arr
+        The key is the friend's ID and the value is the path.
+        """
+        visited = {}  # Note that this is a dictionary, not a set
+        # !!!! IMPLEMENT ME
+        changin_arr = [user_id]
+        depth = 0
+        while changin_arr != []:
+            new_arr = []
+            for i in changin_arr:
+                if i not in visited:
+                    visited[i] = depth
+                    next_friends = self.friendships[i]
+                    for a in next_friends:
+                        new_arr.append(a)
+            depth += 1
+            changin_arr = new_arr
 
         
-    #     return visited
+        return visited
 
     def socialstats(self, user_id):
         visted = self.get_all_social_paths(user_id)
-        visted_arr = [i for i in visted.values]
+        visted_arr = [i for i in visted.values()]
         lenth = len(visted_arr)
         avg = sum(visted_arr) / lenth
+        
         return lenth, avg
 
         
 
 if __name__ == '__main__':
     sg = SocialGraph()
-    sg.populate_graph_linear(10, 2)
+    sg.populate_graph(10, 2)
     print(sg.friendships)
-    connections = sg.get_all_social_paths(1)
+    connections = sg.socialstats(1)
     print(connections)
